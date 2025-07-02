@@ -27,26 +27,26 @@
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="在这一章节我们将会搭建起一个包含 窗口库GLFW&#x2F;数学库GLM&#x2F;图形库Vulkan 的基本的开发环境 在我们实际使用 vulkan 画出一些东西之前，我们首先要有一个用于显示画面结果的窗口。不过，在不同的操作系统上窗口的管理方式不尽相同，好在有一些库使用抽象接口提供了统一了不同操作系统的窗口管理方式（例如 Qt6 GLFW SDL 等），让我们可以简单地完成跨平台的窗口创建工作，我们这里使用一个流">
 <meta property="og:locale">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-2.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-3.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-4.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-5.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-7.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-8.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-9.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-11.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-12.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-13.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-17.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-14.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-15.png">
-<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-16.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-2.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-3.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-4.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-5.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-7.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-8.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-9.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-11.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-12.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-13.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-17.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-14.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-15.png">
+<meta property="og:image" content="https://sike2017.github.io/images/image-16.png">
 <meta property="article:published_time" content="2025-06-19T09:07:50.000Z">
-<meta property="article:modified_time" content="2025-07-02T07:27:18.756Z">
+<meta property="article:modified_time" content="2025-07-02T08:05:40.071Z">
 <meta property="article:author" content="sike2017">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image.png">
+<meta name="twitter:image" content="https://sike2017.github.io/images/image.png">
 
 <link rel="canonical" href="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/">
 
@@ -196,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-07-02 15:27:18" itemprop="dateModified" datetime="2025-07-02T15:27:18+08:00">2025-07-02</time>
+                <time title="Modified: 2025-07-02 16:05:40" itemprop="dateModified" datetime="2025-07-02T16:05:40+08:00">2025-07-02</time>
               </span>
 
           
@@ -214,28 +214,28 @@
 <p>在我们实际使用 vulkan 画出一些东西之前，我们首先要有一个用于显示画面结果的窗口。不过，在不同的操作系统上窗口的管理方式不尽相同，好在有一些库使用抽象接口提供了统一了不同操作系统的窗口管理方式（例如 Qt6 GLFW SDL 等），让我们可以简单地完成跨平台的窗口创建工作，我们这里使用一个流行的库 GLFW 来实现。</p>
 <h3 id="本教程的所有项目编译配置均使用-64-位版本"><a href="#本教程的所有项目编译配置均使用-64-位版本" class="headerlink" title="本教程的所有项目编译配置均使用 64 位版本"></a>本教程的所有项目编译配置均使用 64 位版本</h3><h1 id="GLFW-编译和安装"><a href="#GLFW-编译和安装" class="headerlink" title="GLFW 编译和安装"></a>GLFW 编译和安装</h1><h3 id="考虑到有很多不同操作系统的用户，预编译的包在某些系统上不都总是存在，我们在这里手动从源代码编译-GLFW-库"><a href="#考虑到有很多不同操作系统的用户，预编译的包在某些系统上不都总是存在，我们在这里手动从源代码编译-GLFW-库" class="headerlink" title="考虑到有很多不同操作系统的用户，预编译的包在某些系统上不都总是存在，我们在这里手动从源代码编译 GLFW 库"></a>考虑到有很多不同操作系统的用户，预编译的包在某些系统上不都总是存在，我们在这里手动从源代码编译 GLFW 库</h3><ol>
 <li>从 <a target="_blank" rel="noopener" href="https://www.glfw.org/">https://www.glfw.org/</a> 下载最新的 glfw 源代码；</li>
-<li>解压源代码到你想要的文件夹；<br><img src="image.png"></li>
+<li>解压源代码到你想要的文件夹；<br><img src="/images/image.png"></li>
 <li>使用 cmake-gui 软件打开该 GLFW 项目；</li>
-<li>选择合适的构建目录；<br><img src="image-2.png"></li>
-<li>点击 ‘Configure’ 按钮，如果询问是否创建目录，点击 ‘Yes’;<br><img src="image-3.png" alt="alt text"></li>
-<li>选择合适的 IDE，笔者这里选择 Visual Studio 17 2022, 默认为 64 位；<br><img src="image-4.png" alt="alt text"></li>
-<li>点击 ‘Finish’;<br><img src="image-5.png" alt="alt text"></li>
-<li>在运行结束后，搜索 ‘CMAKE_INSTALL_PREFIX’ 选项，修改为你想要安装的目标目录；<br><img src="image-7.png" alt="alt text"></li>
+<li>选择合适的构建目录；<br><img src="/images/image-2.png"></li>
+<li>点击 ‘Configure’ 按钮，如果询问是否创建目录，点击 ‘Yes’;<br><img src="/images/image-3.png" alt="alt text"></li>
+<li>选择合适的 IDE，笔者这里选择 Visual Studio 17 2022, 默认为 64 位；<br><img src="/images/image-4.png" alt="alt text"></li>
+<li>点击 ‘Finish’;<br><img src="/images/image-5.png" alt="alt text"></li>
+<li>在运行结束后，搜索 ‘CMAKE_INSTALL_PREFIX’ 选项，修改为你想要安装的目标目录；<br><img src="/images/image-7.png" alt="alt text"></li>
 <li>点击 ‘Generate’ 按钮；</li>
-<li>使用您的 IDE 打开对应生成的项目，编译安装即可；<br>对于 Windows 下 Visual Studio 2022 用户，切换到 Release 模式构建 INSTALL 项目即可；<br><img src="image-8.png" alt="alt text"></li>
-<li>构建成功后在刚才 cmake 指定的 CMAKE_INSTALL_PREFIX 路径目录下，即可看到编译和安装好的库；<br>（笔者这里是 L:/code/LearnVulkan/third_party/glfw_installed 目录）<br><img src="image-9.png" alt="alt text"></li>
+<li>使用您的 IDE 打开对应生成的项目，编译安装即可；<br>对于 Windows 下 Visual Studio 2022 用户，切换到 Release 模式构建 INSTALL 项目即可；<br><img src="/images/image-8.png" alt="alt text"></li>
+<li>构建成功后在刚才 cmake 指定的 CMAKE_INSTALL_PREFIX 路径目录下，即可看到编译和安装好的库；<br>（笔者这里是 L:/code/LearnVulkan/third_party/glfw_installed 目录）<br><img src="/images/image-9.png" alt="alt text"></li>
 </ol>
 <p>至此便已成功编译和安装完成了 GLFW 库</p>
 <h1 id="Vulkan-SDK-的安装"><a href="#Vulkan-SDK-的安装" class="headerlink" title="Vulkan SDK 的安装"></a>Vulkan SDK 的安装</h1><p>请前往 LUNARG 官网 <a target="_blank" rel="noopener" href="https://vulkan.lunarg.com/">https://vulkan.lunarg.com</a> 按照您的环境自行安装</p>
-<p><img src="image-11.png" alt="alt text"></p>
-<p>安装完毕后可以通过运行 ‘Vulkan Cube.exe’ 检验是否安装成功；<br><img src="image-12.png" alt="alt text"></p>
-<h1 id="GLM-的安装"><a href="#GLM-的安装" class="headerlink" title="GLM 的安装"></a>GLM 的安装</h1><p>由于 GLM 是一个 Header Only 的库，仅需包含它的头文件即可使用，所以这里可以直接前往 <a target="_blank" rel="noopener" href="https://github.com/g-truc/glm/releases/tag/1.0.1">https://github.com/g-truc/glm/releases/tag/1.0.1</a> 下载最新版本的 glm 代码包，解压的您需要的位置；<br><img src="image-13.png" alt="alt text"></p>
+<p><img src="/images/image-11.png" alt="alt text"></p>
+<p>安装完毕后可以通过运行 ‘Vulkan Cube.exe’ 检验是否安装成功；<br><img src="/images/image-12.png" alt="alt text"></p>
+<h1 id="GLM-的安装"><a href="#GLM-的安装" class="headerlink" title="GLM 的安装"></a>GLM 的安装</h1><p>由于 GLM 是一个 Header Only 的库，仅需包含它的头文件即可使用，所以这里可以直接前往 <a target="_blank" rel="noopener" href="https://github.com/g-truc/glm/releases/tag/1.0.1">https://github.com/g-truc/glm/releases/tag/1.0.1</a> 下载最新版本的 glm 代码包，解压的您需要的位置；<br><img src="/images/image-13.png" alt="alt text"></p>
 <h1 id="创建我们的第一个工程"><a href="#创建我们的第一个工程" class="headerlink" title="创建我们的第一个工程"></a>创建我们的第一个工程</h1><p>在这里我们使用 cmake 创建我们的第一个 Vulkan 工程；</p>
 <ol>
 <li>首先在合适位置创建一个用于存放工程的文件夹（笔者这里为 ‘D:/code/LearVulkan’）；</li>
-<li>使用你的 IDE（笔者这里使用 VSCode 作为 IDE）打开这个工程文件夹，<br>在文件夹中按照如下结构创建 main.cpp 和 CMakeLists.txt 文件<br><img src="image-17.png" alt="alt text"><br>在 CMakeLists.txt 文件中，填写如下内容：<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(LearnVulkan)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">20</span>)</span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD_REQUIRED <span class="keyword">ON</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(Vulkan REQUIRED)</span><br><span class="line"><span class="keyword">set</span>(GLFW_DIR CACHE PATH <span class="string">&quot;Path to GLFW installation&quot;</span>)</span><br><span class="line"><span class="keyword">set</span>(GLM_DIR CACHE PATH <span class="string">&quot;Path to GLM installation&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(GLFW_INCLUDE_DIR <span class="variable">$&#123;GLFW_DIR&#125;</span>/<span class="keyword">include</span>)</span><br><span class="line"><span class="keyword">set</span>(GLFW_LIBRARY_DIR <span class="variable">$&#123;GLFW_DIR&#125;</span>/lib)</span><br><span class="line"><span class="keyword">set</span>(GLM_INCLUDE_DIR <span class="variable">$&#123;GLM_DIR&#125;</span>/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(LearnVulkan src/main.cpp)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_include_directories</span>(</span><br><span class="line">    LearnVulkan PRIVATE</span><br><span class="line">    <span class="variable">$&#123;Vulkan_INCLUDE_DIRS&#125;</span></span><br><span class="line">    <span class="variable">$&#123;GLFW_INCLUDE_DIR&#125;</span></span><br><span class="line">    <span class="variable">$&#123;GLM_INCLUDE_DIR&#125;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_directories</span>(</span><br><span class="line">    LearnVulkan PRIVATE</span><br><span class="line">    <span class="variable">$&#123;GLFW_LIBRARY_DIR&#125;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>(LearnVulkan</span><br><span class="line">    <span class="variable">$&#123;Vulkan_LIBRARIES&#125;</span></span><br><span class="line">    glfw3</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>使用 cmake-gui 打开刚才创建的工程文件，指定合适的构建目录， 点击 ‘Configure’, 按需选择合适的IDE版本等信息；<br><img src="image-14.png"></li>
-<li>配置 GLFW_DIR 和 GLM_DIR 到之前安装的目录下；<br><img src="image-15.png" alt="GLFW_DIR"><br><img src="image-16.png" alt="GLM_DIR"></li>
+<li>使用你的 IDE（笔者这里使用 VSCode 作为 IDE）打开这个工程文件夹，<br>在文件夹中按照如下结构创建 main.cpp 和 CMakeLists.txt 文件<br><img src="/images/image-17.png" alt="alt text"><br>在 CMakeLists.txt 文件中，填写如下内容：<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(LearnVulkan)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">20</span>)</span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD_REQUIRED <span class="keyword">ON</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(Vulkan REQUIRED)</span><br><span class="line"><span class="keyword">set</span>(GLFW_DIR CACHE PATH <span class="string">&quot;Path to GLFW installation&quot;</span>)</span><br><span class="line"><span class="keyword">set</span>(GLM_DIR CACHE PATH <span class="string">&quot;Path to GLM installation&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(GLFW_INCLUDE_DIR <span class="variable">$&#123;GLFW_DIR&#125;</span>/<span class="keyword">include</span>)</span><br><span class="line"><span class="keyword">set</span>(GLFW_LIBRARY_DIR <span class="variable">$&#123;GLFW_DIR&#125;</span>/lib)</span><br><span class="line"><span class="keyword">set</span>(GLM_INCLUDE_DIR <span class="variable">$&#123;GLM_DIR&#125;</span>/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(LearnVulkan src/main.cpp)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_include_directories</span>(</span><br><span class="line">    LearnVulkan PRIVATE</span><br><span class="line">    <span class="variable">$&#123;Vulkan_INCLUDE_DIRS&#125;</span></span><br><span class="line">    <span class="variable">$&#123;GLFW_INCLUDE_DIR&#125;</span></span><br><span class="line">    <span class="variable">$&#123;GLM_INCLUDE_DIR&#125;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_directories</span>(</span><br><span class="line">    LearnVulkan PRIVATE</span><br><span class="line">    <span class="variable">$&#123;GLFW_LIBRARY_DIR&#125;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>(LearnVulkan</span><br><span class="line">    <span class="variable">$&#123;Vulkan_LIBRARIES&#125;</span></span><br><span class="line">    glfw3</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>使用 cmake-gui 打开刚才创建的工程文件，指定合适的构建目录， 点击 ‘Configure’, 按需选择合适的IDE版本等信息；<br><img src="/images/image-14.png"></li>
+<li>配置 GLFW_DIR 和 GLM_DIR 到之前安装的目录下；<br><img src="/images/image-15.png" alt="GLFW_DIR"><br><img src="/images/image-16.png" alt="GLM_DIR"></li>
 <li>再次点击 ‘Configure’;</li>
 <li>无误后点击 ‘Generate’;</li>
 <li>点击 ‘Open Project’ 打开生成的项目；</li>
