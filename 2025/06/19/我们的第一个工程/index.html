@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sike2017.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在这一章节我们将会搭建起一个包含 窗口库GLFW&#x2F;数学库GLM&#x2F;图形库Vulkan 的基本的开发环境 在我们实际使用 vulkan 画出一些东西之前，我们首先要有一个用于显示画面结果的窗口。不过，在不同的操作系统上窗口的管理方式不尽相同，好在有一些库使用抽象接口提供了统一了不同操作系统的窗口管理方式（例如 Qt6 GLFW SDL 等），让我们可以简单地完成跨平台的窗口创建工作，我们这里使用一个流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我们的第一个工程">
+<meta property="og:url" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="在这一章节我们将会搭建起一个包含 窗口库GLFW&#x2F;数学库GLM&#x2F;图形库Vulkan 的基本的开发环境 在我们实际使用 vulkan 画出一些东西之前，我们首先要有一个用于显示画面结果的窗口。不过，在不同的操作系统上窗口的管理方式不尽相同，好在有一些库使用抽象接口提供了统一了不同操作系统的窗口管理方式（例如 Qt6 GLFW SDL 等），让我们可以简单地完成跨平台的窗口创建工作，我们这里使用一个流">
+<meta property="og:locale">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-2.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-3.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-4.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-5.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-7.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-8.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-9.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-11.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-12.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-13.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-17.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-14.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-15.png">
+<meta property="og:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image-16.png">
+<meta property="article:published_time" content="2025-06-19T09:07:50.000Z">
+<meta property="article:modified_time" content="2025-07-02T07:27:18.756Z">
+<meta property="article:author" content="sike2017">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/image.png">
+
+<link rel="canonical" href="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh'
+  };
+</script>
+
+  <title>我们的第一个工程 | Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
+    <link itemprop="mainEntityOfPage" href="https://sike2017.github.io/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="sike2017">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我们的第一个工程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2025-06-19 17:07:50" itemprop="dateCreated datePublished" datetime="2025-06-19T17:07:50+08:00">2025-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-07-02 15:27:18" itemprop="dateModified" datetime="2025-07-02T15:27:18+08:00">2025-07-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在这一章节我们将会搭建起一个包含 窗口库GLFW/数学库GLM/图形库Vulkan 的基本的开发环境</p>
+<p>在我们实际使用 vulkan 画出一些东西之前，我们首先要有一个用于显示画面结果的窗口。不过，在不同的操作系统上窗口的管理方式不尽相同，好在有一些库使用抽象接口提供了统一了不同操作系统的窗口管理方式（例如 Qt6 GLFW SDL 等），让我们可以简单地完成跨平台的窗口创建工作，我们这里使用一个流行的库 GLFW 来实现。</p>
+<h3 id="本教程的所有项目编译配置均使用-64-位版本"><a href="#本教程的所有项目编译配置均使用-64-位版本" class="headerlink" title="本教程的所有项目编译配置均使用 64 位版本"></a>本教程的所有项目编译配置均使用 64 位版本</h3><h1 id="GLFW-编译和安装"><a href="#GLFW-编译和安装" class="headerlink" title="GLFW 编译和安装"></a>GLFW 编译和安装</h1><h3 id="考虑到有很多不同操作系统的用户，预编译的包在某些系统上不都总是存在，我们在这里手动从源代码编译-GLFW-库"><a href="#考虑到有很多不同操作系统的用户，预编译的包在某些系统上不都总是存在，我们在这里手动从源代码编译-GLFW-库" class="headerlink" title="考虑到有很多不同操作系统的用户，预编译的包在某些系统上不都总是存在，我们在这里手动从源代码编译 GLFW 库"></a>考虑到有很多不同操作系统的用户，预编译的包在某些系统上不都总是存在，我们在这里手动从源代码编译 GLFW 库</h3><ol>
+<li>从 <a target="_blank" rel="noopener" href="https://www.glfw.org/">https://www.glfw.org/</a> 下载最新的 glfw 源代码；</li>
+<li>解压源代码到你想要的文件夹；<br><img src="image.png"></li>
+<li>使用 cmake-gui 软件打开该 GLFW 项目；</li>
+<li>选择合适的构建目录；<br><img src="image-2.png"></li>
+<li>点击 ‘Configure’ 按钮，如果询问是否创建目录，点击 ‘Yes’;<br><img src="image-3.png" alt="alt text"></li>
+<li>选择合适的 IDE，笔者这里选择 Visual Studio 17 2022, 默认为 64 位；<br><img src="image-4.png" alt="alt text"></li>
+<li>点击 ‘Finish’;<br><img src="image-5.png" alt="alt text"></li>
+<li>在运行结束后，搜索 ‘CMAKE_INSTALL_PREFIX’ 选项，修改为你想要安装的目标目录；<br><img src="image-7.png" alt="alt text"></li>
+<li>点击 ‘Generate’ 按钮；</li>
+<li>使用您的 IDE 打开对应生成的项目，编译安装即可；<br>对于 Windows 下 Visual Studio 2022 用户，切换到 Release 模式构建 INSTALL 项目即可；<br><img src="image-8.png" alt="alt text"></li>
+<li>构建成功后在刚才 cmake 指定的 CMAKE_INSTALL_PREFIX 路径目录下，即可看到编译和安装好的库；<br>（笔者这里是 L:/code/LearnVulkan/third_party/glfw_installed 目录）<br><img src="image-9.png" alt="alt text"></li>
+</ol>
+<p>至此便已成功编译和安装完成了 GLFW 库</p>
+<h1 id="Vulkan-SDK-的安装"><a href="#Vulkan-SDK-的安装" class="headerlink" title="Vulkan SDK 的安装"></a>Vulkan SDK 的安装</h1><p>请前往 LUNARG 官网 <a target="_blank" rel="noopener" href="https://vulkan.lunarg.com/">https://vulkan.lunarg.com</a> 按照您的环境自行安装</p>
+<p><img src="image-11.png" alt="alt text"></p>
+<p>安装完毕后可以通过运行 ‘Vulkan Cube.exe’ 检验是否安装成功；<br><img src="image-12.png" alt="alt text"></p>
+<h1 id="GLM-的安装"><a href="#GLM-的安装" class="headerlink" title="GLM 的安装"></a>GLM 的安装</h1><p>由于 GLM 是一个 Header Only 的库，仅需包含它的头文件即可使用，所以这里可以直接前往 <a target="_blank" rel="noopener" href="https://github.com/g-truc/glm/releases/tag/1.0.1">https://github.com/g-truc/glm/releases/tag/1.0.1</a> 下载最新版本的 glm 代码包，解压的您需要的位置；<br><img src="image-13.png" alt="alt text"></p>
+<h1 id="创建我们的第一个工程"><a href="#创建我们的第一个工程" class="headerlink" title="创建我们的第一个工程"></a>创建我们的第一个工程</h1><p>在这里我们使用 cmake 创建我们的第一个 Vulkan 工程；</p>
+<ol>
+<li>首先在合适位置创建一个用于存放工程的文件夹（笔者这里为 ‘D:/code/LearVulkan’）；</li>
+<li>使用你的 IDE（笔者这里使用 VSCode 作为 IDE）打开这个工程文件夹，<br>在文件夹中按照如下结构创建 main.cpp 和 CMakeLists.txt 文件<br><img src="image-17.png" alt="alt text"><br>在 CMakeLists.txt 文件中，填写如下内容：<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(LearnVulkan)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">20</span>)</span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD_REQUIRED <span class="keyword">ON</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(Vulkan REQUIRED)</span><br><span class="line"><span class="keyword">set</span>(GLFW_DIR CACHE PATH <span class="string">&quot;Path to GLFW installation&quot;</span>)</span><br><span class="line"><span class="keyword">set</span>(GLM_DIR CACHE PATH <span class="string">&quot;Path to GLM installation&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(GLFW_INCLUDE_DIR <span class="variable">$&#123;GLFW_DIR&#125;</span>/<span class="keyword">include</span>)</span><br><span class="line"><span class="keyword">set</span>(GLFW_LIBRARY_DIR <span class="variable">$&#123;GLFW_DIR&#125;</span>/lib)</span><br><span class="line"><span class="keyword">set</span>(GLM_INCLUDE_DIR <span class="variable">$&#123;GLM_DIR&#125;</span>/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(LearnVulkan src/main.cpp)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_include_directories</span>(</span><br><span class="line">    LearnVulkan PRIVATE</span><br><span class="line">    <span class="variable">$&#123;Vulkan_INCLUDE_DIRS&#125;</span></span><br><span class="line">    <span class="variable">$&#123;GLFW_INCLUDE_DIR&#125;</span></span><br><span class="line">    <span class="variable">$&#123;GLM_INCLUDE_DIR&#125;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_directories</span>(</span><br><span class="line">    LearnVulkan PRIVATE</span><br><span class="line">    <span class="variable">$&#123;GLFW_LIBRARY_DIR&#125;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>(LearnVulkan</span><br><span class="line">    <span class="variable">$&#123;Vulkan_LIBRARIES&#125;</span></span><br><span class="line">    glfw3</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>使用 cmake-gui 打开刚才创建的工程文件，指定合适的构建目录， 点击 ‘Configure’, 按需选择合适的IDE版本等信息；<br><img src="image-14.png"></li>
+<li>配置 GLFW_DIR 和 GLM_DIR 到之前安装的目录下；<br><img src="image-15.png" alt="GLFW_DIR"><br><img src="image-16.png" alt="GLM_DIR"></li>
+<li>再次点击 ‘Configure’;</li>
+<li>无误后点击 ‘Generate’;</li>
+<li>点击 ‘Open Project’ 打开生成的项目；</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/06/18/VulkanAPI%E6%A6%82%E8%BF%B0/" rel="prev" title="VulkanAPI概述">
+      <i class="fa fa-chevron-left"></i> VulkanAPI概述
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/07/02/%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3/" rel="next" title="创建窗口">
+      创建窗口 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E6%95%99%E7%A8%8B%E7%9A%84%E6%89%80%E6%9C%89%E9%A1%B9%E7%9B%AE%E7%BC%96%E8%AF%91%E9%85%8D%E7%BD%AE%E5%9D%87%E4%BD%BF%E7%94%A8-64-%E4%BD%8D%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">本教程的所有项目编译配置均使用 64 位版本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GLFW-%E7%BC%96%E8%AF%91%E5%92%8C%E5%AE%89%E8%A3%85"><span class="nav-number"></span> <span class="nav-text">GLFW 编译和安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%80%83%E8%99%91%E5%88%B0%E6%9C%89%E5%BE%88%E5%A4%9A%E4%B8%8D%E5%90%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%94%A8%E6%88%B7%EF%BC%8C%E9%A2%84%E7%BC%96%E8%AF%91%E7%9A%84%E5%8C%85%E5%9C%A8%E6%9F%90%E4%BA%9B%E7%B3%BB%E7%BB%9F%E4%B8%8A%E4%B8%8D%E9%83%BD%E6%80%BB%E6%98%AF%E5%AD%98%E5%9C%A8%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E8%BF%99%E9%87%8C%E6%89%8B%E5%8A%A8%E4%BB%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91-GLFW-%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">考虑到有很多不同操作系统的用户，预编译的包在某些系统上不都总是存在，我们在这里手动从源代码编译 GLFW 库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vulkan-SDK-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number"></span> <span class="nav-text">Vulkan SDK 的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GLM-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number"></span> <span class="nav-text">GLM 的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B"><span class="nav-number"></span> <span class="nav-text">创建我们的第一个工程</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">sike2017</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sike2017</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
