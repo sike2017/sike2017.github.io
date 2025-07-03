@@ -168,10 +168,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2025-07-02 15:26:55 / Modified: 16:05:50" itemprop="dateCreated datePublished" datetime="2025-07-02T15:26:55+08:00">2025-07-02</time>
+              <time title="Created: 2025-07-02 15:26:55" itemprop="dateCreated datePublished" datetime="2025-07-02T15:26:55+08:00">2025-07-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-07-03 08:56:14" itemprop="dateModified" datetime="2025-07-03T08:56:14+08:00">2025-07-03</time>
+              </span>
 
           
 
@@ -211,6 +217,7 @@
 <h2 id="LearnVulkanApplication-cleanup-函数施工"><a href="#LearnVulkanApplication-cleanup-函数施工" class="headerlink" title="LearnVulkanApplication::cleanup 函数施工"></a>LearnVulkanApplication::cleanup 函数施工</h2><p>我们在 cleanup 函数中清理我们创建的所有资源</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 清理资源</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cleanup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    glfwDestroyWindow(window);</span><br><span class="line">    glfwTerminate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h2><p>我们运行该工程，会看到一个空白的窗口。干的好，这就是我们之后绘制的地方。<br><img src="/images/image-19.png" alt="alt text"></p>
 <h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><h3 id="git-tag：’创建窗口’"><a href="#git-tag：’创建窗口’" class="headerlink" title="git tag：’创建窗口’"></a>git tag：’创建窗口’</h3><p>可以通过 git 克隆教程配套代码: </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/sike2017/LearnVulkan.git</span><br></pre></td></tr></table></figure>
 <p>然后使用 git checkout 签出当前文章的 tag 获取完整代码:</p>
