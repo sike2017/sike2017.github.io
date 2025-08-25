@@ -31,9 +31,9 @@
   </script>
 
   <meta name="description" content="程序骨架搭建首先创建承载程序主要应用逻辑的主类: 123456789101112131415161718192021class LearnVulkanApplication &amp;#123;public:    void run() &amp;#123;        initWindow();        mainLoop();        cleanup();    &amp;#125;private:">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="创建窗口">
-<meta property="og:url" content="https://sike2017.github.io/2025/07/02/%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3/index.html">
+<meta property="og:url" content="https://sike2017.github.io/categories/%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3.html">
 <meta property="og:site_name" content="SuoDevp的网络日志">
 <meta property="og:description" content="程序骨架搭建首先创建承载程序主要应用逻辑的主类: 123456789101112131415161718192021class LearnVulkanApplication &amp;#123;public:    void run() &amp;#123;        initWindow();        mainLoop();        cleanup();    &amp;#125;private:">
 <meta property="og:locale">
@@ -45,7 +45,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sike2017.github.io/images/image-19.png">
 
-<link rel="canonical" href="https://sike2017.github.io/2025/07/02/%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3/">
+<link rel="canonical" href="https://sike2017.github.io/categories/%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3">
 
 
 <script id="page-configurations">
@@ -53,12 +53,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh'
   };
 </script>
 
-  <title>创建窗口 | SuoDevp的网络日志</title>
+  <title>创建窗口 | SuoDevp的网络日志
+</title>
   
 
 
@@ -160,68 +161,33 @@
       <div class="main-inner">
         <div class="content-wrap">
           
+  
+  
 
-          <div class="content post posts-expand">
+          <div class="content page posts-expand">
             
 
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
-    <link itemprop="mainEntityOfPage" href="https://sike2017.github.io/2025/07/02/%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SuoDevp">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SuoDevp的网络日志">
-    </span>
+    
+    
+    <div class="post-block" lang="zh">
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          创建窗口
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+<h1 class="post-title" itemprop="name headline">创建窗口
+</h1>
 
-              <time title="Created: 2025-07-02 15:26:55" itemprop="dateCreated datePublished" datetime="2025-07-02T15:26:55+08:00">2025-07-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-08-25 10:30:31" itemprop="dateModified" datetime="2025-08-25T10:30:31+08:00">2025-08-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LearnVulkan/" itemprop="url" rel="index"><span itemprop="name">LearnVulkan</span></a>
-                </span>
-            </span>
+<div class="post-meta">
+  
 
-          
+</div>
 
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
-        <h2 id="程序骨架搭建"><a href="#程序骨架搭建" class="headerlink" title="程序骨架搭建"></a>程序骨架搭建</h2><p>首先创建承载程序主要应用逻辑的主类:</p>
+      
+      
+      <div class="post-body">
+          <h2 id="程序骨架搭建"><a href="#程序骨架搭建" class="headerlink" title="程序骨架搭建"></a>程序骨架搭建</h2><p>首先创建承载程序主要应用逻辑的主类:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LearnVulkanApplication</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        initWindow();</span><br><span class="line">        mainLoop();</span><br><span class="line">        cleanup();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 初始化窗口</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">initWindow</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 主循环</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">mainloop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 清理资源</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clearup</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>创建 main 函数调起应用程序主循环:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LearnVulkanApplication app;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        app.run();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (<span class="keyword">const</span> <span class="built_in">std</span>::exception&amp; e) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; e.what() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -256,35 +222,16 @@
 
 <h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>[1] glfw3.h 中 GLFW_INCLUDE_VULKAN 宏对于的引入 vulkan.h 的代码实现如下<br><img src="/images/image-18.png" alt="alt text"></p>
 
+      </div>
+      
+      
+      
     </div>
+    
 
     
     
     
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2025/06/19/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B/" rel="prev" title="我们的第一个工程">
-      <i class="fa fa-chevron-left"></i> 我们的第一个工程
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/08/24/%E4%BD%A0%E5%A5%BD%EF%BC%8C%E7%AA%97%E5%8F%A3/" rel="next" title="你好，窗口.md">
-      你好，窗口.md <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
 
 
           </div>
@@ -349,15 +296,9 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">posts</span>
         </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">categories</span></a>
       </div>
   </nav>
 </div>
